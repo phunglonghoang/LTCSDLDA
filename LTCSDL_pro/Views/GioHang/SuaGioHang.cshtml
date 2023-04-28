@@ -1,0 +1,87 @@
+﻿@using LTCSDL_pro.Models;
+@model List<GioHang>
+@{
+    ViewBag.Title = "Sửa Giỏ Hàng";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+
+<h2>SuaGioHang</h2>
+
+
+
+<table>
+    <tr>
+        <td class="bgc">Mã Sách</td>
+
+        <td class="bgc">Tên Sách</td>
+
+        <td class="bgc">Ảnh</td>
+
+        <td class="bgc">Đơn giá </td>
+        <td class="bgc">Số Lượng</td>
+        <td class="bgc">Thành tiền </td>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.iMaSach</td>
+
+            <td>@item.sTenSach</td>
+
+            <td>
+                <img src="@Url.Content("~/Asset/img/"+item.sAnhBia)" />
+            </td>
+
+            <td>
+                @string.Format("{0:0,0}", item.dDonGia) VNĐ
+            </td>
+            @*chỉnh xửa đơn hàng*@
+            @using (Html.BeginForm("CapNhatGioHang", "GioHang", new { iMaSanPham = item.iMaSach }))
+            {
+                <td>
+                    @Html.TextBox("txtSoLuong", item.iSoLuong)
+
+                </td>
+           
+
+
+
+            <td>
+                @string.Format("{0:0,0}", item.ThanhTien) VNĐ
+            </td>
+            <td>
+                <input type="submit" value="Cập Nhật" />
+                <br />
+                @Html.ActionLink("Xóa", "XoaGioHang",  new { iMaSanPham = item.iMaSach })
+            </td>
+            
+                
+            }
+          
+        </tr>
+
+    }
+
+
+</table>
+<style>
+    td > img {
+        width: 70px;
+        height: 120px;
+    }
+
+    table {
+        border: 1px solid;
+    }
+
+    td {
+        margin: 5px;
+        padding: 5px;
+    }
+
+        td.bgc {
+            background-color: darkred;
+        }
+</style>
+

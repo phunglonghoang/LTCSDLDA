@@ -1,0 +1,14 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_MainLayout.cshtml";
+}
+@*them sach moi vao day *@
+
+<div id="templatemo_content_right">
+    <h1>Các Sách Mới</h1>
+    @Html.Action("SachMoiPartial", "Home")
+
+
+    <a href="subpage.html"><img src="~/Asset/images/templatemo_ads.jpg" alt="ads" /></a>
+</div> <!-- end of content right -->
